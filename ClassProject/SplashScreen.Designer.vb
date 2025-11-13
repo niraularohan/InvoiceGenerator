@@ -34,9 +34,9 @@ Partial Class SplashScreen
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Label2.Location = New System.Drawing.Point(484, 252)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(224, 33)
+        Me.Label2.Size = New System.Drawing.Size(213, 33)
         Me.Label2.TabIndex = 3
-        Me.Label2.Text = "A School Project - XI"
+        Me.Label2.Text = "Invoice System"
         '
         'Label1
         '
@@ -47,7 +47,7 @@ Partial Class SplashScreen
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(463, 85)
         Me.Label1.TabIndex = 2
-        Me.Label1.Text = "Invoice Generator"
+        Me.Label1.Text = "Basic Invoice Generator"
         '
         'SplashScreen
         '
