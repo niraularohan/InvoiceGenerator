@@ -13,6 +13,8 @@ Public Class FrmProformaInvoice
     Private lblTotalCost As Label
     Private btnPrint As Button
     Private lblNote, lblThanks As Label
+    Private txtNote As TextBox
+    Private txtThanks As TextBox
     Private lblBilledTo, lblAddress, lblInvoiceDate, lblInvoiceSerial As Label
     Private txtBilledTo, txtAddress, txtInvoiceSerial As TextBox
     Private dtpInvoiceDate As DateTimePicker
@@ -200,26 +202,40 @@ Public Class FrmProformaInvoice
             .ReadOnly = True
         }
 
-        ' === Note and Thank You ===
+        ' === Note and Thank You (editable) ===
         lblNote = New Label With {
-            .Text = "Note: All the Logistics and Transport Cost are included in the total cost.",
+            .Text = "Note:",
             .Font = New Font("Segoe UI", 9, FontStyle.Regular),
             .Location = New Point(20, 560),
             .AutoSize = True
         }
+        txtNote = New TextBox With {
+            .Location = New Point(70, 556),
+            .Size = New Size(700, 40),
+            .Multiline = True,
+            .Font = New Font("Segoe UI", 9),
+            .Text = "All the Logistics and Transport Cost are included in the total cost."
+        }
 
         lblThanks = New Label With {
-            .Text = "Thank you for your valuable inquiry.",
+            .Text = "Thank you message:",
             .Font = New Font("Segoe UI", 9, FontStyle.Regular),
-            .Location = New Point(20, 580),
+            .Location = New Point(20, 606),
             .AutoSize = True
+        }
+        txtThanks = New TextBox With {
+            .Location = New Point(140, 602),
+            .Size = New Size(630, 40),
+            .Multiline = True,
+            .Font = New Font("Segoe UI", 9),
+            .Text = "Thank you for your valuable inquiry."
         }
 
         ' === Footer Buttons: Remove Line, Reset All, Print ===
         btnRemoveLine = New Button With {
             .Text = "Remove Line",
             .Font = New Font("Segoe UI", 9, FontStyle.Regular),
-            .Location = New Point(20, 620),
+            .Location = New Point(20, 680),
             .Size = New Size(100, 28),
             .BackColor = Color.FromArgb(52, 73, 94),
             .ForeColor = Color.White,
@@ -230,7 +246,7 @@ Public Class FrmProformaInvoice
         btnResetAll = New Button With {
             .Text = "Reset All",
             .Font = New Font("Segoe UI", 9, FontStyle.Regular),
-            .Location = New Point(130, 620),
+            .Location = New Point(130, 680),
             .Size = New Size(100, 28),
             .BackColor = Color.FromArgb(52, 73, 94),
             .ForeColor = Color.White,
@@ -241,7 +257,7 @@ Public Class FrmProformaInvoice
         btnPrint = New Button With {
             .Text = "Print",
             .Font = New Font("Segoe UI", 10, FontStyle.Bold),
-            .Location = New Point(880, 620),
+            .Location = New Point(880, 680),
             .Size = New Size(80, 30),
             .BackColor = Color.FromArgb(52, 73, 94),
             .ForeColor = Color.White,
@@ -255,7 +271,7 @@ Public Class FrmProformaInvoice
         AddHandler PrintDocument1.PrintPage, AddressOf PrintDocument1_PrintPage
 
         ' === Add Controls to contentPanel ===
-        contentPanel.Controls.AddRange({lblBilledTo, txtBilledTo, lblAddress, txtAddress, lblInvoiceDate, dtpInvoiceDate, lblInvoiceSerial, txtInvoiceSerial, grpProductEntry, dgvInvoiceItems, lblTotalCost, txtTotalCost, lblNote, lblThanks, btnRemoveLine, btnResetAll, btnPrint})
+        contentPanel.Controls.AddRange({lblBilledTo, txtBilledTo, lblAddress, txtAddress, lblInvoiceDate, dtpInvoiceDate, lblInvoiceSerial, txtInvoiceSerial, grpProductEntry, dgvInvoiceItems, lblTotalCost, txtTotalCost, lblNote, txtNote, lblThanks, txtThanks, btnRemoveLine, btnResetAll, btnPrint})
 
         ' === Add header and contentPanel to Form ===
         Me.Controls.AddRange({PanelHeader, contentPanel})
@@ -401,8 +417,9 @@ Public Class FrmProformaInvoice
         y += 30
         g.DrawString("Total Cost (KES): " & txtTotalCost.Text, fontHeader, Brushes.Black, 480, y)
         y += 40
-        g.DrawString(lblNote.Text, fontNormal, Brushes.Black, 50, y) : y += 20
-        g.DrawString(lblThanks.Text, fontNormal, Brushes.Black, 50, y)
+        ' Print editable note and thank-you message (use textboxes' content)
+        g.DrawString(Convert.ToString(txtNote.Text), fontNormal, Brushes.Black, 50, y) : y += 20
+        g.DrawString(Convert.ToString(txtThanks.Text), fontNormal, Brushes.Black, 50, y)
     End Sub
 
     ' Sync ComboBox text into the header invoice title label
