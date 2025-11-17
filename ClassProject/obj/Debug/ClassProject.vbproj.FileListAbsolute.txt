@@ -24,3 +24,7 @@ C:\Users\kreative Sahara\Source\Repos\InvoiceGenerator\ClassProject\obj\Debug\In
 C:\Users\kreative Sahara\Source\Repos\InvoiceGenerator\ClassProject\obj\Debug\Invoice Generator v1.0.0.xml
 C:\Users\kreative Sahara\Source\Repos\InvoiceGenerator\ClassProject\obj\Debug\Invoice Generator v1.0.0.pdb
 C:\Users\kreative Sahara\Source\Repos\InvoiceGenerator\ClassProject\obj\Debug\Invoice Generator v1.0.0.exe.config
+C:\Users\kreative Sahara\source\repos\InvoiceGenerator\ClassProject\bin\Debug\Invoice Generator v1.0.0.exe.manifest
+C:\Users\kreative Sahara\source\repos\InvoiceGenerator\ClassProject\bin\Debug\Invoice Generator v1.0.0.application
+C:\Users\kreative Sahara\source\repos\InvoiceGenerator\ClassProject\obj\Debug\Invoice Generator v1.0.0.exe.manifest
+C:\Users\kreative Sahara\source\repos\InvoiceGenerator\ClassProject\obj\Debug\Invoice Generator v1.0.0.application
