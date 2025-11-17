@@ -56,14 +56,14 @@ Partial Class Form1
         Me.Button3 = New System.Windows.Forms.Button()
         Me.PrintPreviewDialog1 = New System.Windows.Forms.PrintPreviewDialog()
         Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
-        Me.InvoiceDataSet = New ClassProject.InvoiceDataSet()
+        'Me.InvoiceDataSet = New ClassProject.InvoiceDataSet()
         Me.InvoiceDataSetBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
-        CType(Me.InvoiceDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        'CType(Me.InvoiceDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.InvoiceDataSetBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -87,7 +87,7 @@ Partial Class Form1
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(153, 28)
         Me.Label7.TabIndex = 0
-        Me.Label7.Text = "Invoice Generator"
+        Me.Label7.Text = "Invoice Generator Windows"
         '
         'PictureBox1
         '
@@ -116,7 +116,7 @@ Partial Class Form1
         Me.TextBox1.Size = New System.Drawing.Size(215, 20)
         Me.TextBox1.TabIndex = 4
         '
-        'TextBox2
+        'TextBox2a
         '
         Me.TextBox2.Location = New System.Drawing.Point(105, 74)
         Me.TextBox2.Name = "TextBox2"
@@ -354,12 +354,12 @@ Partial Class Form1
         '
         'InvoiceDataSet
         '
-        Me.InvoiceDataSet.DataSetName = "InvoiceDataSet"
-        Me.InvoiceDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        'Me.InvoiceDataSet.DataSetName = "InvoiceDataSet"
+        'Me.InvoiceDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'InvoiceDataSetBindingSource
         '
-        Me.InvoiceDataSetBindingSource.DataSource = Me.InvoiceDataSet
+        'Me.InvoiceDataSetBindingSource.DataSource = Me.InvoiceDataSet
         Me.InvoiceDataSetBindingSource.Position = 0
         '
         'Form1
@@ -392,7 +392,7 @@ Partial Class Form1
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
-        CType(Me.InvoiceDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        'CType(Me.InvoiceDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.InvoiceDataSetBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -432,5 +432,5 @@ Partial Class Form1
     Friend WithEvents PrintPreviewDialog1 As PrintPreviewDialog
     Friend WithEvents PrintDocument1 As Printing.PrintDocument
     Friend WithEvents InvoiceDataSetBindingSource As BindingSource
-    Friend WithEvents InvoiceDataSet As InvoiceDataSet
+    'Friend WithEvents InvoiceDataSet As InvoiceDataSet
 End Class

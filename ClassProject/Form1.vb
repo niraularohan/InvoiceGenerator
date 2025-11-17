@@ -19,9 +19,6 @@ Public Class Form1
         DataGridView1.Rows.Item(Num).Cells(3).Value = a * b
         cleartextboxes()
         total()
-
-
-
     End Sub
     Private Sub total()
         Dim sum As Integer = 0
@@ -49,9 +46,6 @@ Public Class Form1
         If DataGridView1.Rows.Count = 0 Then
             Exit Sub
         End If
-
-
-
         PrintPreviewDialog1.WindowState = FormWindowState.Maximized
         PrintPreviewDialog1.StartPosition = FormStartPosition.CenterScreen
         PrintPreviewDialog1.PrintPreviewControl.Zoom = 1.5
@@ -72,30 +66,17 @@ Public Class Form1
         DataGridView1.Rows.Clear()
         cleartextboxes()
         total()
-
     End Sub
 
     Private Sub PrintDocument1_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
 
-
-
         Dim Rows As DataGridViewRowCollection = Me.DataGridView1.Rows
-
-
-
         Dim UnitWidth As Integer = 22
         Dim UnitHeight As Integer = 22
-
         Dim LeftMargin As Integer = 0
         Dim topMargin As Integer = 0
 
-
-
         Dim ReciptDetailsHeight = Rows.Count * UnitHeight
-
-
-
-
 
         Dim font As New Font("Times", 12)
         Dim fontB As New Font("Times", 12, FontStyle.Bold)
@@ -112,15 +93,10 @@ Public Class Form1
         Dim strRight As New StringFormat
         strRight.Alignment = StringAlignment.Far
 
-
         Dim YBillStart As Integer = 4 * UnitHeight
-
 
         Dim YHeaderStrat As Integer = YBillStart + (3 * UnitHeight)
         Dim YDetailsStart As Integer = YHeaderStrat + UnitHeight
-
-
-
 
         Dim Rect As New Rectangle(LeftMargin + 250, topMargin + 0, TRecwidth, UnitHeight + 10)
         e.Graphics.DrawRectangle(Pens.White, Rect)
@@ -138,8 +114,8 @@ Public Class Form1
         Dim DtValue As String = Format(Now.Date, "MMM-dd-yyyy")
 
 
-        e.Graphics.DrawString("HIMABI SUPERMARKET", FontboldHeader, Brushes.Black, Rect, Str)
-        e.Graphics.DrawString("Damak-2 Jhapa", Fontbold, Brushes.Black, Rect1, Str)
+        e.Graphics.DrawString("GRANITE STORE", FontboldHeader, Brushes.Black, Rect, Str)
+        e.Graphics.DrawString("Ngong, Embulbul", Fontbold, Brushes.Black, Rect1, Str)
         e.Graphics.DrawString("Time: " & DateTimePicker1.Value, Fontbold, Brushes.Black, Rect2, Str)
         e.Graphics.DrawString("Name: " & TextBox1.Text, font, Brushes.Black, Rect3, strLeft)
         e.Graphics.DrawString("Address: " & TextBox2.Text, font, Brushes.Black, Rect4, strLeft)
@@ -166,9 +142,6 @@ Public Class Form1
         e.Graphics.DrawString("Amount", font, Brushes.Black, Rect041, Str)
         ''
 
-
-
-
         e.Graphics.DrawRectangle(Pens.Black, LeftMargin + UnitWidth * 5, topMargin + YDetailsStart, UnitWidth * 3, ReciptDetailsHeight)
         e.Graphics.DrawRectangle(Pens.Black, LeftMargin + UnitWidth * 8, topMargin + YDetailsStart, UnitWidth * 8, ReciptDetailsHeight)
         e.Graphics.DrawRectangle(Pens.Black, LeftMargin + UnitWidth * 16, topMargin + YDetailsStart, UnitWidth * 5, ReciptDetailsHeight)
@@ -179,15 +152,11 @@ Public Class Form1
         For I = 0 To Rows.Count - 1
             Dim Yloc = UnitHeight * I + YDetailsStart
 
-
             Dim Rect1g As New Rectangle(LeftMargin + UnitWidth * 5, topMargin + Yloc, UnitWidth * 3, UnitHeight)
             Dim Rect2g As New Rectangle(LeftMargin + UnitWidth * 8, topMargin + Yloc, UnitWidth * 8, UnitHeight)
             Dim Rect3g As New Rectangle(LeftMargin + UnitWidth * 16, topMargin + Yloc, UnitWidth * 5, UnitHeight)
             Dim Rect4g As New Rectangle(LeftMargin + UnitWidth * 21, topMargin + Yloc, UnitWidth * 5, UnitHeight)
             Dim Rect5g As New Rectangle(LeftMargin + UnitWidth * 26, topMargin + Yloc, UnitWidth * 6, UnitHeight)
-
-
-
 
             e.Graphics.DrawString(I + 1, font, Brushes.Black, Rect1g, Str)
             e.Graphics.DrawString(Rows(I).Cells(0).Value, font, Brushes.Black, Rect2g, strLeft)
