@@ -7,6 +7,7 @@ Public Class FrmProformaInvoice
     Private PanelHeader As Panel
     Private contentPanel As Panel
     Private lblCompanyName, lblCompanyDetails, lblInvoiceTitle As Label
+    Private cmbInvoiceType As ComboBox
     Private dgvInvoiceItems As DataGridView
     Private txtTotalCost As TextBox
     Private lblTotalCost As Label
@@ -75,7 +76,18 @@ Public Class FrmProformaInvoice
             .AutoSize = True
         }
 
+        ' ComboBox to allow editing/selecting invoice type; placed in header
+        cmbInvoiceType = New ComboBox With {
+            .Location = New Point(520, 40),
+            .Width = 180,
+            .DropDownStyle = ComboBoxStyle.DropDown ' allow typing custom value
+        }
+        cmbInvoiceType.Items.AddRange(New Object() {"PROFORMA INVOICE", "TAX INVOICE", "QUOTATION", "CREDIT NOTE", "DEBIT NOTE"})
+        cmbInvoiceType.Text = lblInvoiceTitle.Text
+        AddHandler cmbInvoiceType.TextChanged, AddressOf cmbInvoiceType_TextChanged
+
         PanelHeader.Controls.AddRange({lblCompanyName, lblCompanyDetails, lblInvoiceTitle})
+        PanelHeader.Controls.Add(cmbInvoiceType)
 
         ' === Content panel with AutoScroll to allow overlapping elements ===
         contentPanel = New Panel With {
@@ -354,7 +366,8 @@ Public Class FrmProformaInvoice
         ' Header
         g.DrawString(lblCompanyName.Text, fontHeader, Brushes.Black, 50, y) : y += 25
         g.DrawString(lblCompanyDetails.Text, fontNormal, Brushes.Black, 50, y) : y += 40
-        g.DrawString("PROFORMA INVOICE", fontHeader, Brushes.Black, 600, 50)
+        ' print the dynamic invoice title from lblInvoiceTitle
+        g.DrawString(lblInvoiceTitle.Text, fontHeader, Brushes.Black, 600, 50)
         y += 10
 
         ' Client Info (moved to top)
@@ -390,5 +403,12 @@ Public Class FrmProformaInvoice
         y += 40
         g.DrawString(lblNote.Text, fontNormal, Brushes.Black, 50, y) : y += 20
         g.DrawString(lblThanks.Text, fontNormal, Brushes.Black, 50, y)
+    End Sub
+
+    ' Sync ComboBox text into the header invoice title label
+    Private Sub cmbInvoiceType_TextChanged(sender As Object, e As EventArgs)
+        If cmbInvoiceType IsNot Nothing AndAlso lblInvoiceTitle IsNot Nothing Then
+            lblInvoiceTitle.Text = cmbInvoiceType.Text
+        End If
     End Sub
 End Class
