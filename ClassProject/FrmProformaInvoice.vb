@@ -355,7 +355,15 @@ Public Class FrmProformaInvoice
         g.DrawString(lblCompanyName.Text, fontHeader, Brushes.Black, 50, y) : y += 25
         g.DrawString(lblCompanyDetails.Text, fontNormal, Brushes.Black, 50, y) : y += 40
         g.DrawString("PROFORMA INVOICE", fontHeader, Brushes.Black, 600, 50)
+        y += 10
+
+        ' Client Info (moved to top)
+        g.DrawString("Billed To: " & txtBilledTo.Text, fontNormal, Brushes.Black, 50, y)
+        g.DrawString("Invoice Date: " & dtpInvoiceDate.Value.ToShortDateString(), fontNormal, Brushes.Black, 600, y)
         y += 20
+        g.DrawString("Address: " & txtAddress.Text, fontNormal, Brushes.Black, 50, y)
+        g.DrawString("Invoice Serial: " & txtInvoiceSerial.Text, fontNormal, Brushes.Black, 600, y)
+        y += 30
 
         ' Table Header
         g.DrawString("ITEM NO.", fontNormal, Brushes.Black, 50, y)
@@ -381,13 +389,6 @@ Public Class FrmProformaInvoice
         g.DrawString("Total Cost (KES): " & txtTotalCost.Text, fontHeader, Brushes.Black, 480, y)
         y += 40
         g.DrawString(lblNote.Text, fontNormal, Brushes.Black, 50, y) : y += 20
-        g.DrawString(lblThanks.Text, fontNormal, Brushes.Black, 50, y) : y += 40
-
-        ' Footer Client Info
-        g.DrawString("Billed To: " & txtBilledTo.Text, fontNormal, Brushes.Black, 50, y)
-        g.DrawString("Invoice Date: " & dtpInvoiceDate.Value.ToShortDateString(), fontNormal, Brushes.Black, 600, y)
-        y += 20
-        g.DrawString("Address: " & txtAddress.Text, fontNormal, Brushes.Black, 50, y)
-        g.DrawString("Invoice Serial: " & txtInvoiceSerial.Text, fontNormal, Brushes.Black, 600, y)
+        g.DrawString(lblThanks.Text, fontNormal, Brushes.Black, 50, y)
     End Sub
 End Class
