@@ -84,9 +84,9 @@ Public Class FrmProformaInvoice
             .BackColor = Color.Transparent
         }
 
-        ' === Product Entry Group (above the grid) ===
+        ' === Product Entry Group (will be placed just above the grid) ===
         grpProductEntry = New GroupBox With {
-            .Location = New Point(20, 110),
+            .Location = New Point(20, 200), ' moved to sit immediately above the DataGridView
             .Size = New Size(960, 50),
             .FlatStyle = FlatStyle.Flat
         }
@@ -115,10 +115,48 @@ Public Class FrmProformaInvoice
 
         grpProductEntry.Controls.AddRange({lblItemNo, txtItemNo, lblDescription, txtDescription, lblQty, txtQty, lblUnitPrice, txtUnitPrice, btnAddItem})
 
+        ' === Client Info (moved to top, above the product entry group) ===
+        lblBilledTo = New Label With {
+            .Text = "Bill To:",
+            .Location = New Point(20, 130),
+            .Font = New Font("Segoe UI", 10),
+            .AutoSize = True,
+            .TextAlign = ContentAlignment.MiddleRight
+        }
+        txtBilledTo = New TextBox With {
+            .Location = New Point(100, 128),
+            .Size = New Size(360, 24),
+            .Multiline = False,
+            .BorderStyle = BorderStyle.FixedSingle,
+            .Font = New Font("Segoe UI", 9),
+            .Anchor = AnchorStyles.Top Or AnchorStyles.Left
+        }
+
+        lblInvoiceDate = New Label With {.Text = "Invoice Date:", .Location = New Point(480, 130), .Font = New Font("Segoe UI", 10)}
+        dtpInvoiceDate = New DateTimePicker With {.Location = New Point(600, 128), .Width = 150}
+
+        lblAddress = New Label With {
+            .Text = "Address:",
+            .Location = New Point(20, 160),
+            .Font = New Font("Segoe UI", 10),
+            .AutoSize = True,
+            .TextAlign = ContentAlignment.MiddleRight
+        }
+        txtAddress = New TextBox With {
+            .Location = New Point(100, 158),
+            .Size = New Size(360, 24),
+            .Multiline = False,
+            .BorderStyle = BorderStyle.FixedSingle,
+            .Font = New Font("Segoe UI", 9),
+            .Anchor = AnchorStyles.Top Or AnchorStyles.Left
+        }
+
+        lblInvoiceSerial = New Label With {.Text = "Invoice Serial:", .Location = New Point(480, 160), .Font = New Font("Segoe UI", 10)}
+        txtInvoiceSerial = New TextBox With {.Location = New Point(600, 158), .Width = 150}
+
         ' === DataGridView (Invoice Table) ===
-        ' Reduced height to approximately show 10 rows by default (around 260px)
         dgvInvoiceItems = New DataGridView With {
-            .Location = New Point(20, 170),
+            .Location = New Point(20, 260), ' placed below the product entry group
             .Size = New Size(960, 260),
             .BackgroundColor = Color.White,
             .AllowUserToAddRows = False,
@@ -134,17 +172,16 @@ Public Class FrmProformaInvoice
         dgvInvoiceItems.Columns.Add("Amount", "T. AMOUNT (KSH)")
 
         ' === Total Section ===
-        ' Moved up to sit below the reduced grid height
         lblTotalCost = New Label With {
             .Text = "Total Cost (KES):",
             .Font = New Font("Segoe UI", 10, FontStyle.Bold),
-            .Location = New Point(650, 460),
+            .Location = New Point(650, 520),
             .AutoSize = True
         }
 
         txtTotalCost = New TextBox With {
             .Font = New Font("Segoe UI", 10, FontStyle.Bold),
-            .Location = New Point(790, 456),
+            .Location = New Point(790, 516),
             .Width = 180,
             .TextAlign = HorizontalAlignment.Right,
             .Text = "0.00",
@@ -155,59 +192,18 @@ Public Class FrmProformaInvoice
         lblNote = New Label With {
             .Text = "Note: All the Logistics and Transport Cost are included in the total cost.",
             .Font = New Font("Segoe UI", 9, FontStyle.Regular),
-            .Location = New Point(20, 495),
+            .Location = New Point(20, 560),
             .AutoSize = True
         }
 
         lblThanks = New Label With {
             .Text = "Thank you for your valuable inquiry.",
             .Font = New Font("Segoe UI", 9, FontStyle.Regular),
-            .Location = New Point(20, 515),
+            .Location = New Point(20, 580),
             .AutoSize = True
         }
 
-        ' === Client Info (bottom section like PDF) ===
-        ' Align labels to middle-right and use single-line textboxes with consistent height to avoid overlap
-        lblBilledTo = New Label With {
-            .Text = "Bill To:",
-            .Location = New Point(20, 548),
-            .Font = New Font("Segoe UI", 10),
-            .AutoSize = True,
-            .TextAlign = ContentAlignment.MiddleRight
-        }
-        txtBilledTo = New TextBox With {
-            .Location = New Point(100, 546),
-            .Size = New Size(250, 24),
-            .Multiline = False,
-            .BorderStyle = BorderStyle.FixedSingle,
-            .Font = New Font("Segoe UI", 9),
-            .Anchor = AnchorStyles.Top Or AnchorStyles.Left
-        }
-
-        lblAddress = New Label With {
-            .Text = "Address:",
-            .Location = New Point(20, 582),
-            .Font = New Font("Segoe UI", 10),
-            .AutoSize = True,
-            .TextAlign = ContentAlignment.MiddleRight
-        }
-        txtAddress = New TextBox With {
-            .Location = New Point(100, 580),
-            .Size = New Size(250, 24),
-            .Multiline = False,
-            .BorderStyle = BorderStyle.FixedSingle,
-            .Font = New Font("Segoe UI", 9),
-            .Anchor = AnchorStyles.Top Or AnchorStyles.Left
-        }
-
-        lblInvoiceDate = New Label With {.Text = "Invoice Date:", .Location = New Point(600, 550), .Font = New Font("Segoe UI", 10)}
-        dtpInvoiceDate = New DateTimePicker With {.Location = New Point(720, 548), .Width = 150}
-
-        lblInvoiceSerial = New Label With {.Text = "Invoice Serial:", .Location = New Point(600, 580), .Font = New Font("Segoe UI", 10)}
-        txtInvoiceSerial = New TextBox With {.Location = New Point(720, 578), .Width = 150}
-
         ' === Footer Buttons: Remove Line, Reset All, Print ===
-        ' Moved up accordingly
         btnRemoveLine = New Button With {
             .Text = "Remove Line",
             .Font = New Font("Segoe UI", 9, FontStyle.Regular),
@@ -247,7 +243,7 @@ Public Class FrmProformaInvoice
         AddHandler PrintDocument1.PrintPage, AddressOf PrintDocument1_PrintPage
 
         ' === Add Controls to contentPanel ===
-        contentPanel.Controls.AddRange({grpProductEntry, dgvInvoiceItems, lblTotalCost, txtTotalCost, lblNote, lblThanks, lblBilledTo, txtBilledTo, lblAddress, txtAddress, lblInvoiceDate, dtpInvoiceDate, lblInvoiceSerial, txtInvoiceSerial, btnRemoveLine, btnResetAll, btnPrint})
+        contentPanel.Controls.AddRange({lblBilledTo, txtBilledTo, lblAddress, txtAddress, lblInvoiceDate, dtpInvoiceDate, lblInvoiceSerial, txtInvoiceSerial, grpProductEntry, dgvInvoiceItems, lblTotalCost, txtTotalCost, lblNote, lblThanks, btnRemoveLine, btnResetAll, btnPrint})
 
         ' === Add header and contentPanel to Form ===
         Me.Controls.AddRange({PanelHeader, contentPanel})
